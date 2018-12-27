@@ -1,6 +1,5 @@
 import re
 from Course import Course
-#from Student import Student
 
 def format_data(table,questions):
     students, course_names = parse_data(table,questions)
@@ -9,8 +8,6 @@ def format_data(table,questions):
         courses.append(Course(name,5))
 
     return students,courses
-
-
 
 
 
@@ -60,8 +57,3 @@ def get_course_name(cell,question):
     else:
         return match.group(1)
 
-
-def parse_students(results,name_column,course_positions):
-    students = []
-    for student_response in results:
-        student.append(Student(student_response[name_column],))
