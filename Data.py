@@ -1,11 +1,12 @@
 import re
 from Course import Course
 
-def format_data(table,questions):
+def format_data(table,questions,course_size):
     students, course_names = parse_data(table,questions)
-    courses = []
+    
+    courses = {}
     for name in course_names:
-        courses.append(Course(name,5))
+        courses[name] = Course(name,course_size)
 
     return students,courses
 

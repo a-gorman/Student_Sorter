@@ -11,7 +11,7 @@ class Course:
         return self._max_size
 
     def add_student(self,student):
-        if not self.is_full:
+        if not self.is_full():
             self._students.append(student)
             return True
         else:
