@@ -1,21 +1,54 @@
 import re
-from dataclasses import dataclass
+from Course import Course
+#from Student import Student
+
+def format_data(table,questions):
+    students, course_names = parse_data(table,questions)
+    courses = []
+    for name in course_names:
+        courses.append(Course(name,5))
+
+    return students,courses
+
+
+
 
 
 def parse_data(table,questions):
-    name_col, course_names = parse_header(table[1],questions)
-    
+    name_col_loc, courses = parse_header(table[0],questions)
 
+    students = {}
+    for row in table[1:]:
+        name, pref = parse_row(row,name_col_loc,courses)
+        students[name] = pref
+    
+    course_names = courses.values()
+
+    return students,course_names
+
+
+def parse_row(row,name_col_loc,courses):
+    student_name = row[name_col_loc]
+
+
+    course_preferences = [None] * len(courses)
+    for i in range(len(row)):
+        if i in courses:
+            course_preferences[int(row[i])-1] = courses[i] # -1 due to answers being 1 indexed (first choice is choice #1)
+        else:
+            pass
+
+    return student_name,course_preferences
 
 def parse_header(header,questions):
     courses = {}
-    for i in range(header):
+    for i in range(len(header)):
         if header[i] == questions['name']:
             name_col = i
         else:
             course_name = get_course_name(header[i],questions['course'])
             if course_name is not None:
-                courses[course_name] = i
+                courses[i] = course_name
 
     return name_col,courses
 
@@ -26,3 +59,9 @@ def get_course_name(cell,question):
         return None
     else:
         return match.group(1)
+
+
+def parse_students(results,name_column,course_positions):
+    students = []
+    for student_response in results:
+        student.append(Student(student_response[name_column],))

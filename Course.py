@@ -1,9 +1,9 @@
 class Course:
-    def __init__(self,name,maxsize,position):
+    def __init__(self,name,maxsize):#,position):
         self._name = name
         self._max_size = maxsize
         self._students = []
-        self.position = position #Position within the table
+        #self.position = position #Position within the table
 
     def is_full(self):
         return len(self._students) >= self._max_size
