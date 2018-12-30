@@ -1,6 +1,7 @@
 from Data import format_data
 from Assignment import assign_students
 from Google_API import get_results
+from Output import courses_to_csv
 
 results = get_results('Class Test','credentials.json')
 
@@ -9,8 +10,8 @@ questions = {
     'course': 'Class Ranking'
 }
 
-students,courses = format_data(results,questions,5)
+students,courses = format_data(results,questions,2)
 
 assign_students(students,courses)
 
-x = 1
+courses_to_csv(courses)

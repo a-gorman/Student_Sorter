@@ -16,3 +16,13 @@ class Course:
             return True
         else:
             return False
+
+    def to_csv(self):
+        string = self._name
+        if(self._students == 0):
+            return string
+        
+        for student in self._students:
+            string = string + r',' + student
+
+        return string

@@ -44,7 +44,7 @@ def parse_header(header,questions):
         if header[i] == questions['name']:
             name_col = i
         else:
-            course_name = get_course_name(header[i],questions['course'])
+            course_name = get_course_name(header[i],re.escape(questions['course']))
             if course_name is not None:
                 courses[i] = course_name
 
